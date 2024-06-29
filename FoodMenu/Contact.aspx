@@ -3,6 +3,9 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="row row-gap-3 col-6">
+    
+        <asp:FileUpload class="form-control"  ID="imbDishImageFile" runat="server" />
+
         <div class="col-6">
             <label>Dish name</label>
             <asp:TextBox type="text" class="form-control" runat="server" />
@@ -10,7 +13,7 @@
         <div class="col-6">
             <label>Category</label>
             <asp:DropDownList ID="Listbox1" class="form-select" aria-label="Default select example" runat="server">
-                <asp:ListItem Value="null" Selected="True">Cactegory</asp:ListItem>
+                <asp:ListItem Value="null" Selected="True">Category</asp:ListItem>
                 <asp:ListItem Value="null">Entradas</asp:ListItem>
                 <asp:ListItem Value="null">Tacos</asp:ListItem>
                 <asp:ListItem Value="null">Pizzas</asp:ListItem>

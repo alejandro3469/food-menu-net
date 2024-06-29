@@ -13,5 +13,10 @@ namespace FoodMenu
         {
 
         }
+
+        protected void imbDishImage_Load(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

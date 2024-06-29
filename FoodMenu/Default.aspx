@@ -31,9 +31,13 @@
         <div class="container row" id="entradas">
             <h3>Entradas</h3>
             <div class="card col-12">
+                
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-2">
+                            <img src="https://cdn.sortiraparis.com/images/80/100789/834071-too-restaurant-too-hotel-paris-photos-menu-entrees.jpg" class="img-thumbnail rounded " alt="...">
+                        </div>
+                        <div class="col-8">
                             <h5 class="card-title">Tablón de quesos</h5>
                             <p class="card-text"></p>
                             <p class="card-text">Queso panela, de cabra o manchego, focaccia, aceitunas negras, aceitunas verdes, arandanos y fruta de temporada</p>
@@ -53,7 +57,10 @@
             <div class="card col-12">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-2">
+                            <img src="https://cdn.sortiraparis.com/images/80/100789/834071-too-restaurant-too-hotel-paris-photos-menu-entrees.jpg" class="img-thumbnail rounded " alt="...">
+                        </div>
+                        <div class="col-8">
                             <h5 class="card-title">Arrachera</h5>
                             <p class="card-text"></p>
                             <p class="card-text">-</p>
@@ -69,7 +76,10 @@
             <div class="card col-12">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-2">
+                            <img src="https://cdn.sortiraparis.com/images/80/100789/834071-too-restaurant-too-hotel-paris-photos-menu-entrees.jpg" class="img-thumbnail rounded " alt="...">
+                        </div>
+                        <div class="col-8">
                             <h5 class="card-title">Pollo</h5>
                             <p class="card-text"></p>
                             <p class="card-text">-</p>
@@ -84,7 +94,10 @@
             <div class="card col-12">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-2">
+                            <img src="https://cdn.sortiraparis.com/images/80/100789/834071-too-restaurant-too-hotel-paris-photos-menu-entrees.jpg" class="img-thumbnail rounded " alt="...">
+                        </div>
+                        <div class="col-8">
                             <h5 class="card-title">Choirizo</h5>
                             <p class="card-text"></p>
                             <p class="card-text">-</p>
@@ -99,7 +112,10 @@
             <div class="card col-12">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-2">
+                            <img src="https://cdn.sortiraparis.com/images/80/100789/834071-too-restaurant-too-hotel-paris-photos-menu-entrees.jpg" class="img-thumbnail rounded " alt="...">
+                        </div>
+                        <div class="col-8">
                             <h5 class="card-title">Bistec</h5>
                             <p class="card-text"></p>
                             <p class="card-text">-</p>
@@ -119,7 +135,10 @@
             <div class="card col-12">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-2">
+                            <img src="https://cdn.sortiraparis.com/images/80/100789/834071-too-restaurant-too-hotel-paris-photos-menu-entrees.jpg" class="img-thumbnail rounded " alt="...">
+                        </div>
+                        <div class="col-8">
                             <h5 class="card-title">Margarita</h5>
                             <p class="card-text"></p>
                             <p class="card-text">Albaca, tomate, cherry y queso mozarella</p>
