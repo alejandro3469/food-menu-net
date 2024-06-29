@@ -2,7 +2,7 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    <div class="row row-gap-3 col-6">
+    <div class="row row-gap-3 col-6 m-auto align-middle mt-auto">
     
         <asp:FileUpload class="form-control"  ID="imbDishImageFile" runat="server" />
 
