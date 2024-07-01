@@ -15,22 +15,76 @@ namespace FoodMenu
     {
 
         /// <summary>
-        /// Listbox1 control.
+        /// txtDishName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList Listbox1;
+        protected global::System.Web.UI.WebControls.TextBox txtDishName;
 
         /// <summary>
-        /// flexCheckDefault control.
+        /// txtDishNameValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox flexCheckDefault;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator txtDishNameValidator;
+
+        /// <summary>
+        /// ddlCatCategories control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCatCategories;
+
+        /// <summary>
+        /// ddlCatCategoriesValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ddlCatCategoriesValidator;
+
+        /// <summary>
+        /// cbAvailability control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbAvailability;
+
+        /// <summary>
+        /// txtDescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDescription;
+
+        /// <summary>
+        /// txtPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPrice;
+
+        /// <summary>
+        /// txtPriceValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator txtPriceValidator;
 
         /// <summary>
         /// imbDishImageFile control.
@@ -42,12 +96,12 @@ namespace FoodMenu
         protected global::System.Web.UI.WebControls.FileUpload imbDishImageFile;
 
         /// <summary>
-        /// MyButton control.
+        /// SendDishData control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button MyButton;
+        protected global::System.Web.UI.WebControls.Button SendDishData;
     }
 }
