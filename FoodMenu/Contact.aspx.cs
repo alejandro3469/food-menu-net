@@ -13,6 +13,31 @@ namespace FoodMenu
     public partial class Contact : Page
     {
 
+        public void GetDishes()
+        {
+            try
+            {
+
+                var dish_id = Request.QueryString["dish_id"].ToString();
+
+                var connectionString = ConfigurationManager.ConnectionStrings["Default"].ConnectionString;
+                var connection = new SqlConnection(connectionString);
+                var command = new SqlCommand("SELECT dish_id, dish_name, " +
+                    $"dish_description, dish_price, dish_availability, dish_cat_category_id FROM dishes WHERE dish_id = {dish_id};", connection);
+
+                var da = new SqlDataAdapter(command);
+                var ds = new DataSet();
+                da.Fill(ds);
+
+                var dishName = ds.Tables[0].Rows[1];
+                txtDishName.Text = dishName.ToString();
+            }
+            catch (Exception ex)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "Popup", string.Format("Error" + ex.Message, true));
+            }
+        }
+
         public void GetCategories()
         {
             try
@@ -44,14 +69,7 @@ namespace FoodMenu
             var dishName = txtDishName.Text.ToString();
             var dishDescription = txtDescription.Text.ToString();
             var dishpPrice = txtPrice.Text.ToString();
-            var availability = 1;
-            if (cbAvailability.Checked)
-            {
-                availability = 1;
-            } else
-            {
-                availability = 0;
-            }
+            var availability = cbAvailability.Checked ? 1 : 0;
             var dishCategory = ddlCatCategories.SelectedValue.ToString();
 
 
@@ -59,7 +77,7 @@ namespace FoodMenu
             {
                 var command = new SqlCommand($"INSERT INTO dishes (dish_id, dish_name, " +
                     $"dish_description, dish_price, dish_availability, dish_cat_category_id) " +
-                    $"VALUES (COALESCE((SELECT MAX(dish_id) FROM dishes) + 1, 0), " +
+                    $"VALUES (COALESCE((SELECT MAX(dish_id) FROM dishes) + 1, 1), " +
                     $"'{dishName}', '{dishDescription}', {dishpPrice}, {availability}, {dishCategory});", connection);
 
                 connection.Open();
@@ -75,9 +93,15 @@ namespace FoodMenu
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            string dish_id = Request.QueryString["dish_id"];
+            string button_text = dish_id != null ? "UPDATE" : "SEND (INSERT)";
+
+            SendDishData.Text = button_text; //https://localhost:44320/Contact?dish_id=1
+
             if (!IsPostBack)
             {
                 GetCategories();
+                GetDishes();
             }
         }
 
