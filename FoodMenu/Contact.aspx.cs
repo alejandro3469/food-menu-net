@@ -18,7 +18,7 @@ namespace FoodMenu
             try
             {
 
-                var dish_id = Request.QueryString["dish_id"].ToString();
+                var dish_id = Request.QueryString["dish_id"].ToString(); //https://localhost:44320/Contact?dish_id=1
 
                 var connectionString = ConfigurationManager.ConnectionStrings["Default"].ConnectionString;
                 var connection = new SqlConnection(connectionString);
@@ -29,8 +29,10 @@ namespace FoodMenu
                 var ds = new DataSet();
                 da.Fill(ds);
 
-                var dishName = ds.Tables[0].Rows[1];
-                txtDishName.Text = dishName.ToString();
+                var dishName = ds.Tables[0].Rows[0];
+                //.Rows[1]
+                var dishName2 = dishName[1];
+                txtDishName.Text = dishName2.ToString();
             }
             catch (Exception ex)
             {
