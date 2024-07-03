@@ -15,24 +15,32 @@ namespace FoodMenu
 
         public void GetDishes()
         {
+
+            var dish_id = Request.QueryString["dish_id"]; //https://localhost:44320/Contact?dish_id=1
             try
             {
+                if (Request.QueryString["dish_id"] != null)
+                {
+                    var connectionString = ConfigurationManager.ConnectionStrings["Default"].ConnectionString;
+                    var connection = new SqlConnection(connectionString);
+                    var command = new SqlCommand("SELECT dish_id, dish_name, " +
+                        $"dish_description, dish_price, dish_availability, dish_cat_category_id FROM dishes WHERE dish_id = {dish_id.ToString()};", connection);
 
-                var dish_id = Request.QueryString["dish_id"].ToString(); //https://localhost:44320/Contact?dish_id=1
+                    var da = new SqlDataAdapter(command);
+                    var ds = new DataSet();
+                    da.Fill(ds);
 
-                var connectionString = ConfigurationManager.ConnectionStrings["Default"].ConnectionString;
-                var connection = new SqlConnection(connectionString);
-                var command = new SqlCommand("SELECT dish_id, dish_name, " +
-                    $"dish_description, dish_price, dish_availability, dish_cat_category_id FROM dishes WHERE dish_id = {dish_id};", connection);
+                    var dishName = ds.Tables[0].Rows[0];
+                    txtDishName.Text = dishName[1].ToString();
+                    txtDescription.Text = dishName[2].ToString();
+                    txtPrice.Text = dishName[3].ToString();
+                    cbAvailability.Checked = dishName[4].ToString() == "1" ? true : false;
+                    ddlCatCategories.SelectedValue = dishName[5].ToString();
 
-                var da = new SqlDataAdapter(command);
-                var ds = new DataSet();
-                da.Fill(ds);
-
-                var dishName = ds.Tables[0].Rows[0];
-                //.Rows[1]
-                var dishName2 = dishName[1];
-                txtDishName.Text = dishName2.ToString();
+                    var dishpPrice = txtPrice.Text.ToString();
+                    var availability = cbAvailability.Checked ? 1 : 0;
+                    var dishCategory = ddlCatCategories.SelectedValue.ToString();  //https://localhost:44320/Contact?dish_id=1
+                }
             }
             catch (Exception ex)
             {
