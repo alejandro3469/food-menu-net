@@ -106,6 +106,9 @@ namespace FoodMenu
             string dish_id = Request.QueryString["dish_id"];
             string button_text = dish_id != null ? "UPDATE" : "SEND (INSERT)";
 
+            if (dish_id != null) { DeleteDishButton.Visible = true; } else { DeleteDishButton.Visible = false; }
+            
+
             SendDishData.Text = button_text; //https://localhost:44320/Contact?dish_id=1
 
             if (!IsPostBack)

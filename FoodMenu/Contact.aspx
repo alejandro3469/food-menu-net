@@ -79,6 +79,7 @@
                     runat="server" />
             </div>
             <div class="col-6"></div>
+            
             <div class="col-6 text-center">
                 <asp:Button
                     OnClick="SendDishData_Click"
@@ -86,6 +87,16 @@
                     Text="Send"
                     class="btn btn-primary col-3"
                     ID="SendDishData"
+                    runat="server"
+                    Style="width: 60%;" />
+            </div>
+            <div class="col-6 text-center">
+                <asp:Button
+                    OnClick="SendDishData_Click"
+                    ValidationGroup="dish"
+                    Text="Delete"
+                    class="btn btn-danger col-3"
+                    ID="DeleteDishButton"
                     runat="server"
                     Style="width: 60%;" />
             </div>
