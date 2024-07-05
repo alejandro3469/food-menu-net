@@ -92,7 +92,7 @@
             </div>
             <div class="col-6 text-center">
                 <asp:Button
-                    OnClick="SendDishData_Click"
+                    OnClick="DeleteDishButton_Click"
                     ValidationGroup="dish"
                     Text="Delete"
                     class="btn btn-danger col-3"

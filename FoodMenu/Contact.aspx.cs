@@ -107,7 +107,7 @@ namespace FoodMenu
             string button_text = dish_id != null ? "UPDATE" : "SEND (INSERT)";
 
             if (dish_id != null) { DeleteDishButton.Visible = true; } else { DeleteDishButton.Visible = false; }
-            
+
 
             SendDishData.Text = button_text; //https://localhost:44320/Contact?dish_id=1
 
@@ -128,6 +128,29 @@ namespace FoodMenu
         protected void SendDishData_Click(object sender, EventArgs e)
         {
             SendData();
+        }
+
+        protected void DeleteDishButton_Click(object sender, EventArgs e)
+        {
+            var connectionString = ConfigurationManager.ConnectionStrings["Default"].ConnectionString;
+            var connection = new SqlConnection(connectionString);
+
+            try
+            {
+                var dish_id = Request.QueryString["dish_id"]; //https://localhost:44320/Contact?dish_id=1
+
+                var command = new SqlCommand("DELETE FROM dishes WHERE dish_id = {dish_id.ToString()};", connection);
+
+
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                connection.Close();
+                ClientScript.RegisterStartupScript(this.GetType(), "Popup", string.Format("Error" + ex.Message, true));
+            }
         }
     }
 }
