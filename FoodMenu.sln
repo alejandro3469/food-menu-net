@@ -5,6 +5,16 @@ VisualStudioVersion = 16.0.34902.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodMenu", "FoodMenu\FoodMenu.csproj", "{5F585A3A-D930-4F2A-B39D-D5255F33DBAC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. UI", "1. UI", "{48DAA031-BC6D-47F6-BE92-D6D2A8DDCE7B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Business", "2. Business", "{3C9C86E0-FDB6-4BCD-9385-CF417ADB547A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Data", "3. Data", "{7ACA190A-6897-4E7F-BE35-A846DC6C0BD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootMenu.Data", "FootMenu.Data\FootMenu.Data.csproj", "{AE8C2187-8E06-45A1-9123-172BBE31D427}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodMenu.Bussines", "FoodMenu.Bussines\FoodMenu.Bussines.csproj", "{592FDB44-B643-475C-A6F6-9206131F8272}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +25,22 @@ Global
 		{5F585A3A-D930-4F2A-B39D-D5255F33DBAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F585A3A-D930-4F2A-B39D-D5255F33DBAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F585A3A-D930-4F2A-B39D-D5255F33DBAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE8C2187-8E06-45A1-9123-172BBE31D427}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE8C2187-8E06-45A1-9123-172BBE31D427}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE8C2187-8E06-45A1-9123-172BBE31D427}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE8C2187-8E06-45A1-9123-172BBE31D427}.Release|Any CPU.Build.0 = Release|Any CPU
+		{592FDB44-B643-475C-A6F6-9206131F8272}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{592FDB44-B643-475C-A6F6-9206131F8272}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{592FDB44-B643-475C-A6F6-9206131F8272}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{592FDB44-B643-475C-A6F6-9206131F8272}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5F585A3A-D930-4F2A-B39D-D5255F33DBAC} = {48DAA031-BC6D-47F6-BE92-D6D2A8DDCE7B}
+		{AE8C2187-8E06-45A1-9123-172BBE31D427} = {7ACA190A-6897-4E7F-BE35-A846DC6C0BD2}
+		{592FDB44-B643-475C-A6F6-9206131F8272} = {3C9C86E0-FDB6-4BCD-9385-CF417ADB547A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E2E9CB8E-10EE-4C0B-9807-E5DC0274EB76}

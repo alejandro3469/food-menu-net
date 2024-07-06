@@ -52,7 +52,7 @@
                         Available
                     </label>
                 </div>
-                
+
             </div>
             <div class="col-6">
                 <label>Description</label>
@@ -79,7 +79,7 @@
                     runat="server" />
             </div>
             <div class="col-6"></div>
-            
+
             <div class="col-6 text-center">
                 <asp:Button
                     OnClick="SendDishData_Click"

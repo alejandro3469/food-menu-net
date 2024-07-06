@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -82,7 +82,7 @@ namespace FoodMenu
             var availability = cbAvailability.Checked ? 1 : 0;
             var dishCategory = ddlCatCategories.SelectedValue.ToString();
 
-            
+
 
 
             try
@@ -97,7 +97,8 @@ namespace FoodMenu
                     $"dish_description, dish_price, dish_availability, dish_cat_category_id) " +
                     $"VALUES (COALESCE((SELECT MAX(dish_id) FROM dishes) + 1, 1), " +
                     $"'{dishName}', '{dishDescription}', {dishpPrice}, {availability}, {dishCategory});", connection);
-                } else
+                }
+                else
                 {
                     command = new SqlCommand($"UPDATE dishes SET dish_name = '{dishName}', " +
                     $"dish_description = '{dishDescription}', dish_price = {dishpPrice}, dish_availability = {availability}, " +
@@ -119,8 +120,18 @@ namespace FoodMenu
         {
             string dish_id = Request.QueryString["dish_id"];
             string button_text = dish_id != null ? "UPDATE" : "SEND (INSERT)";
+            
+            // Error de escritura de codigo
+            // if (dish_id != null)
+            // {
+            //     DeleteDishButton.Visible = true;
+            // }
+            // else
+            // {
+            //     DeleteDishButton.Visible = false;
+            // }
 
-            if (dish_id != null) { DeleteDishButton.Visible = true; } else { DeleteDishButton.Visible = false; }
+            DeleteDishButton.Visible = dish_id != null;
 
 
             SendDishData.Text = button_text; //https://localhost:44320/Contact?dish_id=1

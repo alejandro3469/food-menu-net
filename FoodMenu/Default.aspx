@@ -59,10 +59,33 @@
 
 
     <div class="container mt-5">
+        <div class="container row">
+            <asp:GridView runat="server" ID="gvDishes" AutoGenerateColumns="true"></asp:GridView>
+        </div>
+
+        <div class="container row">
+            <ul>
+                <li>Id:
+                    <asp:Label ID="lblId" runat="server" /></li>
+                <li>Name:
+                    <asp:Label ID="lblName" runat="server" /></li>
+                <li>Description:
+                    <asp:Label ID="lblDesc" runat="server" /></li>
+                <li>Availability:
+                    <asp:CheckBox ID="chkAvail" runat="server" /></li>
+                <li>Price:
+                    <asp:Label ID="lblPrice" runat="server" /></li>
+                <li>Image:
+                    <asp:Image ID="imgImage" runat="server" /></li>
+                <li>Date:
+                    <asp:Label ID="lblDate" runat="server" /></li>
+            </ul>
+        </div>
+
         <div class="container row" id="entradas">
             <h3>Entradas</h3>
             <div class="card col-12">
-                
+
                 <div class="card-body">
                     <div class="row">
                         <div class="col-2">
