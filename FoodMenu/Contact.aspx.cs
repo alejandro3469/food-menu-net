@@ -82,13 +82,27 @@ namespace FoodMenu
             var availability = cbAvailability.Checked ? 1 : 0;
             var dishCategory = ddlCatCategories.SelectedValue.ToString();
 
+            
+
 
             try
             {
-                var command = new SqlCommand($"INSERT INTO dishes (dish_id, dish_name, " +
+
+                string dish_id = Request.QueryString["dish_id"];
+                var command = new SqlCommand("");
+
+                if (dish_id == null)
+                {
+                    command = new SqlCommand($"INSERT INTO dishes (dish_id, dish_name, " +
                     $"dish_description, dish_price, dish_availability, dish_cat_category_id) " +
                     $"VALUES (COALESCE((SELECT MAX(dish_id) FROM dishes) + 1, 1), " +
                     $"'{dishName}', '{dishDescription}', {dishpPrice}, {availability}, {dishCategory});", connection);
+                } else
+                {
+                    command = new SqlCommand($"UPDATE dishes SET dish_name = '{dishName}', " +
+                    $"dish_description = '{dishDescription}', dish_price = {dishpPrice}, dish_availability = {availability}, " +
+                    $"dish_cat_category_id = {dishCategory} WHERE dish_id = {dish_id.ToString()};", connection);
+                }
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -139,7 +153,7 @@ namespace FoodMenu
             {
                 var dish_id = Request.QueryString["dish_id"]; //https://localhost:44320/Contact?dish_id=1
 
-                var command = new SqlCommand("DELETE FROM dishes WHERE dish_id = {dish_id.ToString()};", connection);
+                var command = new SqlCommand($"DELETE FROM dishes WHERE dish_id = {dish_id.ToString()};", connection);
 
 
                 connection.Open();
