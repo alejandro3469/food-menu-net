@@ -21,7 +21,7 @@ namespace FoodMenu
 
         private void GetDish()
         {
-            var dish = new DishBusiness().GetDish(2);
+            var dish = new DishBusiness().GetDish(8);
 
             lblId.Text = dish.Id.ToString();
             lblName.Text = dish.Name;

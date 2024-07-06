@@ -153,5 +153,6 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <asp:ContentPlaceHolder runat="server" ID="ScriptsContent" />
 </body>
 </html>

@@ -60,7 +60,9 @@
 
     <div class="container mt-5">
         <div class="container row">
-            <asp:GridView runat="server" ID="gvDishes" AutoGenerateColumns="true"></asp:GridView>
+            <asp:GridView runat="server" ID="gvDishes" AutoGenerateColumns="true">
+
+            </asp:GridView>
         </div>
 
         <div class="container row">
@@ -76,7 +78,7 @@
                 <li>Price:
                     <asp:Label ID="lblPrice" runat="server" /></li>
                 <li>Image:
-                    <asp:Image ID="imgImage" runat="server" /></li>
+                    <asp:Image ID="imgImage" runat="server"  Width="200px"/></li>
                 <li>Date:
                     <asp:Label ID="lblDate" runat="server" /></li>
             </ul>

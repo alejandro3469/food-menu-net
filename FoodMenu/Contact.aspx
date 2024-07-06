@@ -76,19 +76,25 @@
                 <asp:FileUpload
                     class="form-control"
                     ID="imbDishImageFile"
-                    runat="server" />
+                    runat="server" accept=".png,.jpg,.jpeg" onchange="ShowImage()" />
+                <asp:HiddenField ID="hfImage" runat="server" />
             </div>
-            <div class="col-6"></div>
+            <div class="col-12">
+                <asp:LinkButton Text="Preview Image" ID="lnkPreview" OnClick="lnkPreview_Click" runat="server" />
+                <asp:Label ID="lblMessage" runat="server" />
+                <asp:Image ID="imgImage" runat="server" />
+            </div>
+            <div class="col-9"></div>
 
-            <div class="col-6 text-center">
+            <div class="col-3">
                 <asp:Button
                     OnClick="SendDishData_Click"
                     ValidationGroup="dish"
                     Text="Send"
-                    class="btn btn-primary col-3"
+                    class="btn btn-primary"
                     ID="SendDishData"
                     runat="server"
-                    Style="width: 60%;" />
+                    Width="100%" />
             </div>
             <div class="col-6 text-center">
                 <asp:Button
@@ -102,4 +108,13 @@
             </div>
         </div>
     </div>
+</asp:Content>
+
+<asp:Content ID="ScriptContent" ContentPlaceHolderID="ScriptsContent" runat="server">
+    <script type="text/javascript">
+        function ShowImage() {
+            var names = $('#MainContent_imbDishImageFile')[0].value.split('\\')
+            $('#MainContent_imgImage').attr("src", 'img/dishes/' + names[names.length - 1])
+        }
+    </script>
 </asp:Content>

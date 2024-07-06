@@ -7,11 +7,38 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.IO;
 
 namespace FoodMenu
 {
     public partial class Contact : Page
     {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            string dish_id = Request.QueryString["dish_id"];
+            string button_text = dish_id != null ? "UPDATE" : "SEND (INSERT)";
+
+            // Error de escritura de codigo
+            // if (dish_id != null)
+            // {
+            //     DeleteDishButton.Visible = true;
+            // }
+            // else
+            // {
+            //     DeleteDishButton.Visible = false;
+            // }
+
+            DeleteDishButton.Visible = dish_id != null;
+
+
+            SendDishData.Text = button_text; //https://localhost:44320/Contact?dish_id=1
+
+            if (!IsPostBack)
+            {
+                GetCategories();
+                GetDishes();
+            }
+        }
 
         public void GetDishes()
         {
@@ -73,6 +100,15 @@ namespace FoodMenu
 
         public void SendData()
         {
+            if (string.IsNullOrEmpty(hfImage.Value) && !imbDishImageFile.HasFile)
+            {
+                throw new ApplicationException("No se ha cargado ninguna imagen");
+            }
+            else if (imbDishImageFile.HasFile)
+            {
+                SaveFile(imbDishImageFile.PostedFile);
+            }
+
             var connectionString = ConfigurationManager.ConnectionStrings["Default"].ConnectionString;
             var connection = new SqlConnection(connectionString);
 
@@ -81,10 +117,7 @@ namespace FoodMenu
             var dishpPrice = txtPrice.Text.ToString();
             var availability = cbAvailability.Checked ? 1 : 0;
             var dishCategory = ddlCatCategories.SelectedValue.ToString();
-
-
-
-
+            var image = hfImage.Value;
             try
             {
 
@@ -94,9 +127,9 @@ namespace FoodMenu
                 if (dish_id == null)
                 {
                     command = new SqlCommand($"INSERT INTO dishes (dish_id, dish_name, " +
-                    $"dish_description, dish_price, dish_availability, dish_cat_category_id) " +
+                    $"dish_description, dish_price, dish_availability, dish_cat_category_id, dish_created_at, dish_image) " +
                     $"VALUES (COALESCE((SELECT MAX(dish_id) FROM dishes) + 1, 1), " +
-                    $"'{dishName}', '{dishDescription}', {dishpPrice}, {availability}, {dishCategory});", connection);
+                    $"'{dishName}', '{dishDescription}', {dishpPrice}, {availability}, {dishCategory}, GETDATE(), '{image}');", connection);
                 }
                 else
                 {
@@ -108,46 +141,61 @@ namespace FoodMenu
                 connection.Open();
                 command.ExecuteNonQuery();
                 connection.Close();
+                var script = $"alert('The dish {dishName} was added successfully')";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Error", script, true);
             }
             catch (Exception ex)
             {
                 connection.Close();
-                ClientScript.RegisterStartupScript(this.GetType(), "Popup", string.Format("Error" + ex.Message, true));
+                var script = $"alert(Error: {ex.Message.Replace("'", "")})";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Error", script, true);
             }
         }
 
-        protected void Page_Load(object sender, EventArgs e)
+        private void SaveFile(HttpPostedFile file)
         {
-            string dish_id = Request.QueryString["dish_id"];
-            string button_text = dish_id != null ? "UPDATE" : "SEND (INSERT)";
-            
-            // Error de escritura de codigo
-            // if (dish_id != null)
-            // {
-            //     DeleteDishButton.Visible = true;
-            // }
-            // else
-            // {
-            //     DeleteDishButton.Visible = false;
-            // }
+            string savePath = Server.MapPath("/img/dishes/");
+            string fileName = imbDishImageFile.FileName;
+            string pathToCheck = savePath + fileName;
 
-            DeleteDishButton.Visible = dish_id != null;
+            // Create a temporary file name to use for checking duplicates.
+            string tempfileName = "";
 
-
-            SendDishData.Text = button_text; //https://localhost:44320/Contact?dish_id=1
-
-            if (!IsPostBack)
+            // Check to see if a file already exists with the
+            // same name as the file to upload.        
+            if (System.IO.File.Exists(pathToCheck))
             {
-                GetCategories();
-                GetDishes();
+                int counter = 2;
+                while (System.IO.File.Exists(pathToCheck))
+                {
+                    // if a file with this name already exists,
+                    // prefix the filename with a number.
+                    tempfileName = counter.ToString() + fileName;
+                    pathToCheck = savePath + tempfileName;
+                    counter++;
+                }
+
+                fileName = tempfileName;
+
+                // Notify the user that the file name was changed.
+                lblMessage.Text = "A file with the same name already exists. <br />Your file was saved as " + fileName;
             }
-        }
+            else
+            {
+                // Notify the user that the file was saved successfully.
+                lblMessage.Text = "Your file was uploaded successfully.";
+            }
 
-        protected void imbDishImageFile_Load(object sender, EventArgs e)
-        {
-            Console.WriteLine(sender.ToString());
-        }
+            // Append the name of the file to upload to the path.
+            savePath += fileName;
 
+            // Call the SaveAs method to save the uploaded
+            // file to the specified directory.
+            imbDishImageFile.SaveAs(savePath);
+
+            imgImage.ImageUrl = "img/dishes/" + fileName;
+            hfImage.Value = imgImage.ImageUrl;
+        }
 
 
         protected void SendDishData_Click(object sender, EventArgs e)
@@ -176,6 +224,24 @@ namespace FoodMenu
                 connection.Close();
                 ClientScript.RegisterStartupScript(this.GetType(), "Popup", string.Format("Error" + ex.Message, true));
             }
+        }
+
+        protected void lnkPreview_Click(object sender, EventArgs e)
+        {
+            if (imbDishImageFile.HasFile)
+            {
+                if (!string.IsNullOrEmpty(hfImage.Value))
+                {
+                    File.Delete(Server.MapPath(hfImage.Value));
+                }
+
+                SaveFile(imbDishImageFile.PostedFile);
+            }
+            else
+            {
+                imgImage.ImageUrl = "img/dishes/sin_imagen.jpg";
+            }
+
         }
     }
 }
