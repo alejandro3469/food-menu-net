@@ -21,7 +21,7 @@ namespace FoodMenu
 
         private void GetDish()
         {
-            var dish = new DishBusiness().GetDish(8);
+            var dish = new DishBusiness().GetDish(5);
 
             lblId.Text = dish.Id.ToString();
             lblName.Text = dish.Name;
@@ -31,6 +31,8 @@ namespace FoodMenu
             imgImage.ImageUrl = dish.Image;
             lblDate.Text = dish.Created_at.ToString("dddd dd \\de MMMM \\del yyyy");
         }
+
+     
 
         private void FillGvDishes()
         {

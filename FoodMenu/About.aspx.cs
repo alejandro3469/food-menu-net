@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using FoodMenu.Bussines;
 
 namespace FoodMenu
 {
@@ -38,6 +39,12 @@ namespace FoodMenu
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void fillDtDishes()
+        {
+            var busObject = new DishBusiness();
+            var dishes = busObject.GetDishes();
         }
     }
 }

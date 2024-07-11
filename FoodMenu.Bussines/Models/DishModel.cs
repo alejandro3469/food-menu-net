@@ -14,6 +14,7 @@ namespace FoodMenu.Bussines.Models
         public string Description { get; set; }
         public bool Availability { get; set; }
         public string Image { get; set; }
+        public int Category { get; set; }
         public DateTime Created_at { get; set; }
     }
 }

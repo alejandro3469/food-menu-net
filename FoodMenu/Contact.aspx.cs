@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using FoodMenu.Bussines;
 using System.IO;
 
 namespace FoodMenu
@@ -32,41 +33,28 @@ namespace FoodMenu
 
 
             SendDishData.Text = button_text; //https://localhost:44320/Contact?dish_id=1
-
+            GetCategories();
             if (!IsPostBack)
             {
-                GetCategories();
-                GetDishes();
+                GetDish();
             }
         }
-
-        public void GetDishes()
+        public void GetDish()
         {
 
             var dish_id = Request.QueryString["dish_id"]; //https://localhost:44320/Contact?dish_id=1
             try
             {
-                if (Request.QueryString["dish_id"] != null)
+                if (!string.IsNullOrEmpty(dish_id))
                 {
-                    var connectionString = ConfigurationManager.ConnectionStrings["Default"].ConnectionString;
-                    var connection = new SqlConnection(connectionString);
-                    var command = new SqlCommand("SELECT dish_id, dish_name, " +
-                        $"dish_description, dish_price, dish_availability, dish_cat_category_id FROM dishes WHERE dish_id = {dish_id.ToString()};", connection);
+                    var dish = new DishBusiness().GetDish(Convert.ToInt32(dish_id));
 
-                    var da = new SqlDataAdapter(command);
-                    var ds = new DataSet();
-                    da.Fill(ds);
-
-                    var dishName = ds.Tables[0].Rows[0];
-                    txtDishName.Text = dishName[1].ToString();
-                    txtDescription.Text = dishName[2].ToString();
-                    txtPrice.Text = dishName[3].ToString();
-                    cbAvailability.Checked = dishName[4].ToString() == "1" ? true : false;
-                    ddlCatCategories.SelectedValue = dishName[5].ToString();
-
-                    var dishpPrice = txtPrice.Text.ToString();
-                    var availability = cbAvailability.Checked ? 1 : 0;
-                    var dishCategory = ddlCatCategories.SelectedValue.ToString();  //https://localhost:44320/Contact?dish_id=1
+                    txtDishName.Text = dish.Name;
+                    txtDescription.Text = dish.Description;
+                    txtPrice.Text = dish.Price.ToString();
+                    cbAvailability.Checked = dish.Availability;
+                    ddlCatCategories.SelectedValue = dish.Category.ToString();
+                    //https://localhost:44320/Contact?dish_id=1
                 }
             }
             catch (Exception ex)
@@ -79,17 +67,11 @@ namespace FoodMenu
         {
             try
             {
-                var connectionString = ConfigurationManager.ConnectionStrings["Default"].ConnectionString;
-                var connection = new SqlConnection(connectionString);
-                var command = new SqlCommand("SELECT category_id, category_name FROM cat_categories;", connection);
+                var categories = new DishBusiness().GetCategories();
 
-                var da = new SqlDataAdapter(command);
-                var ds = new DataSet();
-                da.Fill(ds);
-
-                ddlCatCategories.DataSource = ds.Tables[0];
-                ddlCatCategories.DataTextField = "category_name";
-                ddlCatCategories.DataValueField = "category_id";
+                ddlCatCategories.DataSource = categories;
+                ddlCatCategories.DataTextField = "Name";
+                ddlCatCategories.DataValueField = "Id";
                 ddlCatCategories.DataBind();
             }
             catch (Exception ex)
@@ -100,23 +82,23 @@ namespace FoodMenu
 
         public void SendData()
         {
-            if (string.IsNullOrEmpty(hfImage.Value) && !imbDishImageFile.HasFile)
+            /*if (string.IsNullOrEmpty(hfImage.Value) && !imbDishImageFile.HasFile)
             {
                 throw new ApplicationException("No se ha cargado ninguna imagen");
             }
             else if (imbDishImageFile.HasFile)
             {
                 SaveFile(imbDishImageFile.PostedFile);
-            }
+            }*/
 
             var connectionString = ConfigurationManager.ConnectionStrings["Default"].ConnectionString;
             var connection = new SqlConnection(connectionString);
 
             var dishName = txtDishName.Text.ToString();
             var dishDescription = txtDescription.Text.ToString();
-            var dishpPrice = txtPrice.Text.ToString();
-            var availability = cbAvailability.Checked ? 1 : 0;
-            var dishCategory = ddlCatCategories.SelectedValue.ToString();
+            var dishpPrice = Convert.ToInt32(txtPrice.Text);
+            var availability = cbAvailability.Checked;
+            var dishCategory = Convert.ToInt32(ddlCatCategories.SelectedValue.ToString());
             var image = hfImage.Value;
             try
             {
@@ -126,23 +108,14 @@ namespace FoodMenu
 
                 if (dish_id == null)
                 {
-                    command = new SqlCommand($"INSERT INTO dishes (dish_id, dish_name, " +
-                    $"dish_description, dish_price, dish_availability, dish_cat_category_id, dish_created_at, dish_image) " +
-                    $"VALUES (COALESCE((SELECT MAX(dish_id) FROM dishes) + 1, 1), " +
-                    $"'{dishName}', '{dishDescription}', {dishpPrice}, {availability}, {dishCategory}, GETDATE(), '{image}');", connection);
+                    var categories = new DishBusiness();
+                    categories.AddDish(dishName, dishDescription, dishpPrice, availability, dishCategory, image, DateTime.Now);
                 }
                 else
                 {
-                    command = new SqlCommand($"UPDATE dishes SET dish_name = '{dishName}', " +
-                    $"dish_description = '{dishDescription}', dish_price = {dishpPrice}, dish_availability = {availability}, " +
-                    $"dish_cat_category_id = {dishCategory} WHERE dish_id = {dish_id.ToString()};", connection);
+                    var categories = new DishBusiness();
+                    categories.UpdateDish(Convert.ToInt32(dish_id), dishName, dishDescription, dishpPrice, availability, dishCategory, image, DateTime.Now);
                 }
-
-                connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
-                var script = $"alert('The dish {dishName} was added successfully')";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "Error", script, true);
             }
             catch (Exception ex)
             {
