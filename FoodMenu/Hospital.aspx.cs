@@ -9,38 +9,91 @@ namespace FoodMenu
 {
     public partial class Hospital : System.Web.UI.Page
     {
-        private List<EntDoctor> _doctors;
-        private List<EntSexo> _sexos;
-        private List<EntIntervencion> _intervenciones;
-        private List<EntTurno> _turnos;
+        private static List<EntDoctor> _doctors;
+        private readonly List<EntSexo> _sexos;
+        private readonly List<EntIntervencion> _intervenciones;
+        private readonly List<EntTurno> _turnos;
 
-        protected void Page_Load(object sender, EventArgs e)
+        public Hospital()
         {
-            if (!IsPostBack)
-            {
-                _doctors = new List<EntDoctor>();
-                _sexos = new List<EntSexo>
+            _sexos = new List<EntSexo>
                 {
                     new EntSexo { Id_Sexo = 1, Nombre_Sexo = "Male" },
                     new EntSexo { Id_Sexo = 2, Nombre_Sexo = "Female" },
                     new EntSexo { Id_Sexo = 3, Nombre_Sexo = "Other" }
                 };
 
-                _intervenciones = new List<EntIntervencion>
+            _intervenciones = new List<EntIntervencion>
                 {
-                    new EntIntervencion { Id_Intervencion = 1, Nombre_Intervencion = "Intervention 1" },
-                    new EntIntervencion { Id_Intervencion = 2, Nombre_Intervencion = "Intervention 2" },
-                    new EntIntervencion { Id_Intervencion = 3, Nombre_Intervencion = "Intervention 3" }
+                    new EntIntervencion { Id_Intervencion = 1, Nombre_Intervencion = "Inter 1" },
+                    new EntIntervencion { Id_Intervencion = 2, Nombre_Intervencion = "Inter 2" },
+                    new EntIntervencion { Id_Intervencion = 3, Nombre_Intervencion = "Inter 3" }
                 };
 
-                _turnos = new List<EntTurno>
+            _turnos = new List<EntTurno>
                 {
                     new EntTurno { Id_Turno = 1, Nombre_Turno = "Morning" },
                     new EntTurno { Id_Turno = 2, Nombre_Turno = "Afternoon" },
                     new EntTurno { Id_Turno = 3, Nombre_Turno = "Night" }
                 };
 
-                GenerateFakeDoctors(10);
+            if (_doctors == null)
+            {
+                _doctors = new List<EntDoctor>() {
+                new EntDoctor()
+                {
+                    Id_Doctor = 1,
+                    Nombre_Doctor = "Doctor 1",
+                    Paterno_Doctor = "Paterno 1",
+                    Materno_Doctor = "Materno 1",
+                    Fecha_Naci_Doctor = new DateTime(2020, 12, 10),
+                    Id_Sexo_Doctor = 1, // alternating between 1 and 2 for gender
+                    Id_Intervencion_Doctor = 1, // just an example, replace with actual logic
+                    Id_Turno_Doctor = 1, // alternating between 1, 2, and 3 for shift
+                    Telefono_Doctor = "5512345678", // fake phone number
+                    Sexo = new EntSexo { Id_Sexo = 1, Nombre_Sexo = "Male" },
+                    Intervencion = new EntIntervencion { Id_Intervencion = 1, Nombre_Intervencion = "Intervention 1" },
+                    Turno = _turnos[0]
+
+                },
+                new EntDoctor()
+                {
+                     Id_Doctor = 2,
+                    Nombre_Doctor = "Doctor 2",
+                    Paterno_Doctor = "Paterno 2",
+                    Materno_Doctor = "Materno 2",
+                    Fecha_Naci_Doctor = new DateTime(1995, 12, 10),
+                    Id_Sexo_Doctor = 2,
+                    Id_Intervencion_Doctor = 2,
+                    Id_Turno_Doctor = 2,
+                    Telefono_Doctor = "5549487389",
+                    Sexo = new EntSexo { Id_Sexo = 2, Nombre_Sexo = "Female" },
+                    Intervencion = new EntIntervencion { Id_Intervencion = 2, Nombre_Intervencion = "Intervention 2" },
+                    Turno = _turnos[1]
+                },
+                new EntDoctor ()
+                {
+                    Id_Doctor = 3,
+                    Nombre_Doctor = "Doctor 3",
+                    Paterno_Doctor = "Paterno 3",
+                    Materno_Doctor = "Materno 3",
+                    Fecha_Naci_Doctor = new DateTime(1998, 04, 10),
+                    Id_Sexo_Doctor = 3,
+                    Id_Intervencion_Doctor = 3,
+                    Id_Turno_Doctor = 3,
+                    Telefono_Doctor = "5587654321",
+                    Sexo = new EntSexo { Id_Sexo = 2, Nombre_Sexo = "Other" },
+                    Intervencion = new EntIntervencion { Id_Intervencion = 2, Nombre_Intervencion = "Intervention 3" },
+                    Turno = _turnos[2]
+                }
+             };
+            }
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
                 LlenargvDoctores();
                 LlenarchkTurno();
                 LlenarrbIntervencion();
@@ -122,14 +175,14 @@ namespace FoodMenu
                 rbinter.DataTextField = "Nombre_Intervencion";
                 rbinter.DataValueField = "Id_Intervencion";
                 rbinter.DataBind();
-                rbinter.DataSource = gvDoctores.DataKeys[e.NewEditIndex].Values["Id_Intervencion_Doctor"].ToString();
+                rbinter.SelectedValue = gvDoctores.DataKeys[e.NewEditIndex].Values["Id_Intervencion_Doctor"].ToString();
 
                 CheckBoxList chkTurno = (CheckBoxList)gvDoctores.Rows[e.NewEditIndex].FindControl("chkTurnoEIT");
                 chkTurno.DataSource = _turnos;
                 chkTurno.DataTextField = "Nombre_Turno";
                 chkTurno.DataValueField = "Id_Turno";
                 chkTurno.DataBind();
-                chkTurno.DataSource = gvDoctores.DataKeys[e.NewEditIndex].Values["Id_Turno_Doctor"].ToString();
+                chkTurno.SelectedValue = gvDoctores.DataKeys[e.NewEditIndex].Values["Id_Turno_Doctor"].ToString();
             }
             catch (Exception ex)
             {
@@ -204,6 +257,7 @@ namespace FoodMenu
             try
             {
                 EntDoctor ent = new EntDoctor();
+                ent.Id_Doctor = _doctors.Max(x => x.Id_Doctor) + 1;
                 ent.Nombre_Doctor = ((TextBox)gvDoctores.FooterRow.FindControl("txtNombreFT")).Text;
                 ent.Paterno_Doctor = ((TextBox)gvDoctores.FooterRow.FindControl("txtPaternoFT")).Text;
                 ent.Materno_Doctor = ((TextBox)gvDoctores.FooterRow.FindControl("txtMaternoFT")).Text;
@@ -348,29 +402,6 @@ namespace FoodMenu
                         : _doctors.OrderByDescending(d => d.Telefono_Doctor).ToList();
                 default:
                     return _doctors;
-            }
-        }
-
-        public void GenerateFakeDoctors(int count)
-        {
-            for (int i = 1; i <= count; i++)
-            {
-                EntDoctor doctor = new EntDoctor();
-
-                doctor.Id_Doctor = i;
-                doctor.Nombre_Doctor = $"Doctor {Guid.NewGuid()}";
-                doctor.Paterno_Doctor = $"Paterno {Guid.NewGuid()}";
-                doctor.Materno_Doctor = $"Materno {Guid.NewGuid()}";
-                doctor.Fecha_Naci_Doctor = DateTime.Now;
-                doctor.Id_Sexo_Doctor = i % 2 == 0 ? 1 : 2; // alternating between 1 and 2 for gender
-                doctor.Id_Intervencion_Doctor = i; // just an example, replace with actual logic
-                doctor.Id_Turno_Doctor = i % 3 + 1; // alternating between 1, 2, and 3 for shift
-                doctor.Telefono_Doctor = $"555-01{i:D2}"; // fake phone number
-                doctor.Sexo = _sexos.FirstOrDefault(s => s.Id_Sexo == i % 3 + 1);
-                doctor.Intervencion = _intervenciones.FirstOrDefault(s => s.Id_Intervencion == i + 1);
-                doctor.Turno = _turnos.FirstOrDefault(s => s.Id_Turno == i % 3 + 1);
-
-                _doctors.Add(doctor);
             }
         }
     }

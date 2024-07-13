@@ -122,7 +122,7 @@
             </asp:TemplateField>
             <asp:TemplateField HeaderText="[Borrar]" ShowHeader="False">
                 <ItemTemplate>
-                    <asp:LinkButton ID="lnkBorrar" runat="server" CausesValidation="False" CommandName="Delete" Text="Borrar"></asp:LinkButton>
+                    <asp:LinkButton ID="lnkBorrar" runat="server" OnClientClick="return confirm('Are you sure you want to delete this item');" CausesValidation="False" CommandName="Delete" Text="Borrar"></asp:LinkButton>
                 </ItemTemplate>
             </asp:TemplateField>
 
