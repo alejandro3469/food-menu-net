@@ -106,6 +106,7 @@ namespace FoodMenu
             try
             {
                 DropDownList ddlSexo = (DropDownList)gvDoctores.FooterRow.FindControl("ddlSexoFT");
+
                 ddlSexo.DataSource = _sexos;
                 ddlSexo.DataTextField = "Nombre_Sexo";
                 ddlSexo.DataValueField = "Id_Sexo";

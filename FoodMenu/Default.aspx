@@ -58,154 +58,118 @@
     </div>
 
 
-    <div class="container mt-5">
-        <div class="container row">
-            <asp:GridView runat="server" ID="gvDishes" AutoGenerateColumns="true">
-
-            </asp:GridView>
-        </div>
-
-        <div class="container row">
-            <ul>
-                <li>Id:
-                    <asp:Label ID="lblId" runat="server" /></li>
-                <li>Name:
-                    <asp:Label ID="lblName" runat="server" /></li>
-                <li>Description:
-                    <asp:Label ID="lblDesc" runat="server" /></li>
-                <li>Availability:
-                    <asp:CheckBox ID="chkAvail" runat="server" /></li>
-                <li>Price:
-                    <asp:Label ID="lblPrice" runat="server" /></li>
-                <li>Image:
-                    <asp:Image ID="imgImage" runat="server"  Width="200px"/></li>
-                <li>Date:
-                    <asp:Label ID="lblDate" runat="server" /></li>
-            </ul>
-        </div>
-
-        <div class="container row" id="entradas">
-            <h3>Entradas</h3>
-            <div class="card col-12">
-
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-2">
-                            <img src="https://cdn.sortiraparis.com/images/80/100789/834071-too-restaurant-too-hotel-paris-photos-menu-entrees.jpg" class="img-thumbnail rounded " alt="...">
-                        </div>
-                        <div class="col-8">
-                            <h5 class="card-title">Tablón de quesos</h5>
-                            <p class="card-text"></p>
-                            <p class="card-text">Queso panela, de cabra o manchego, focaccia, aceitunas negras, aceitunas verdes, arandanos y fruta de temporada</p>
-                        </div>
-                        <div class="col-2">
-                            <p class="card-text fw-bold">$20.00</p>
-                            <p class="fs-6">Available</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container row" id="tacos">
-            <h3>Tacos</h3>
-            <div class="card col-12">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-2">
-                            <img src="https://cdn.sortiraparis.com/images/80/100789/834071-too-restaurant-too-hotel-paris-photos-menu-entrees.jpg" class="img-thumbnail rounded " alt="...">
-                        </div>
-                        <div class="col-8">
-                            <h5 class="card-title">Arrachera</h5>
-                            <p class="card-text"></p>
-                            <p class="card-text">-</p>
-                        </div>
-                        <div class="col-2">
-                            <p class="card-text fw-bold">$20.00</p>
-                            <p class="fs-6">Available</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card col-12">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-2">
-                            <img src="https://cdn.sortiraparis.com/images/80/100789/834071-too-restaurant-too-hotel-paris-photos-menu-entrees.jpg" class="img-thumbnail rounded " alt="...">
-                        </div>
-                        <div class="col-8">
-                            <h5 class="card-title">Pollo</h5>
-                            <p class="card-text"></p>
-                            <p class="card-text">-</p>
-                        </div>
-                        <div class="col-2">
-                            <p class="card-text fw-bold">$20.00</p>
-                            <p class="fs-6">Available</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card col-12">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-2">
-                            <img src="https://cdn.sortiraparis.com/images/80/100789/834071-too-restaurant-too-hotel-paris-photos-menu-entrees.jpg" class="img-thumbnail rounded " alt="...">
-                        </div>
-                        <div class="col-8">
-                            <h5 class="card-title">Choirizo</h5>
-                            <p class="card-text"></p>
-                            <p class="card-text">-</p>
-                        </div>
-                        <div class="col-2">
-                            <p class="card-text fw-bold">$20.00</p>
-                            <p class="fs-6">Available</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card col-12">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-2">
-                            <img src="https://cdn.sortiraparis.com/images/80/100789/834071-too-restaurant-too-hotel-paris-photos-menu-entrees.jpg" class="img-thumbnail rounded " alt="...">
-                        </div>
-                        <div class="col-8">
-                            <h5 class="card-title">Bistec</h5>
-                            <p class="card-text"></p>
-                            <p class="card-text">-</p>
-                        </div>
-                        <div class="col-2">
-                            <p class="card-text fw-bold">$20.00</p>
-                            <p class="fs-6">Available</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
-        <div class="container row" id="pizzas">
-            <h3>Pizzas</h3>
-            <div class="card col-12">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-2">
-                            <img src="https://cdn.sortiraparis.com/images/80/100789/834071-too-restaurant-too-hotel-paris-photos-menu-entrees.jpg" class="img-thumbnail rounded " alt="...">
-                        </div>
-                        <div class="col-8">
-                            <h5 class="card-title">Margarita</h5>
-                            <p class="card-text"></p>
-                            <p class="card-text">Albaca, tomate, cherry y queso mozarella</p>
-                        </div>
-                        <div class="col-2">
-                            <p class="card-text fw-bold">$209.00</p>
-                            <p class="fs-6">Available</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
+    <div class="container row">
+        <asp:GridView ID="gvDishes" runat="server" BackColor="White" BorderColor="#3366CC"
+            BorderStyle="None" BorderWidth="1px" CellPadding="4" ShowFooter="True" AutoGenerateColumns="False"
+            DataKeyNames="Id, Category"
+            OnRowEditing="gvDoctores_RowEditing"
+            OnRowUpdating="gvDishes_RowRowUpdating"
+            OnRowCancelingEdit="gvDishes_RowCancelingEdit"
+            OnRowDeleting="gvDishes_RowDeleting" 
+            AllowPaging="True"
+            AllowSorting="True"
+            PageSize="5">
+            <Columns>
+                <asp:TemplateField HeaderText="Name">
+                    <EditItemTemplate>
+                        <asp:TextBox runat="server" Text='<%# Bind("Name") %>' ID="txtNombreEIT"></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label runat="server" Text='<%# Bind("Name") %>' ID="Label1"></asp:Label>
+                    </ItemTemplate>
+                    <FooterTemplate>
+                        Name:
+                    <br />
+                        <asp:TextBox ID="txtDishNameFT" Width="75px" runat="server"></asp:TextBox>
+                    </FooterTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Description" SortExpression="Paterno_Doctor">
+                    <EditItemTemplate>
+                        <asp:TextBox runat="server" Text='<%# Bind("Description") %>' ID="txtDescriptionEIT"></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label runat="server" Text='<%# Bind("Description") %>' ID="Label2"></asp:Label>
+                    </ItemTemplate>
+                    <FooterTemplate>
+                        Description:
+                    <br />
+                        <asp:TextBox ID="txtDescriptionFT" Width="75px" runat="server"></asp:TextBox>
+                    </FooterTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Availability">
+                    <EditItemTemplate>
+                        <asp:CheckBox runat="server" Checked='<%# Bind("Availability") %>' ID="txtAvailabilityEIT"></asp:CheckBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:CheckBox Enabled="false" runat="server" Checked='<%# Bind("Availability") %>' ID="cbAvailability"></asp:CheckBox>
+                    </ItemTemplate>
+                    <FooterTemplate>
+                        Availability:
+                    <br />
+                        <asp:CheckBox ID="cbAvailabilityFT" Width="75px" runat="server"></asp:CheckBox>
+                    </FooterTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Price">
+                    <EditItemTemplate>
+                        <asp:TextBox runat="server" Text='<%# Bind("Price") %>' ID="txtPriceEIT"></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label runat="server" Text='<%# Bind("Price") %>' ID="Label4"></asp:Label>
+                    </ItemTemplate>
+                    <FooterTemplate>
+                        Price:
+                    <br />
+                        <asp:TextBox ID="txtPriceFT" runat="server"></asp:TextBox>
+                    </FooterTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Image">
+                    <EditItemTemplate>
+                        <asp:TextBox runat="server" Text='<%# Bind("Image") %>' ID="txtImageEIT"></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label runat="server" Text='<%# Bind("Image") %>' ID="lblImage"></asp:Label>
+                    </ItemTemplate>
+                    <FooterTemplate>
+                        Image:
+                    <br />
+                        <asp:TextBox ID="txtImageFT" runat="server"></asp:TextBox>
+                    </FooterTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Category">
+                    <EditItemTemplate>
+                        <asp:DropDownList runat="server" ID="ddlCatCategoriesEIT"></asp:DropDownList>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label runat="server" Text='<%# Bind("Category") %>' ID="lblCategory"></asp:Label>
+                    </ItemTemplate>
+                    <FooterTemplate>
+                        Category:
+                    <br />
+                        <asp:DropDownList ID="ddlCatCategoriesFT" Width="75px" runat="server"></asp:DropDownList>
+                    </FooterTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="EDIT" ShowHeader="False">
+                    <EditItemTemplate>
+                        <asp:LinkButton ID="lnkActualizar" runat="server" CausesValidation="True" CommandName="Update" Text="UPDATE"></asp:LinkButton>
+                        &nbsp;<asp:LinkButton ID="lnkCancelar" runat="server" CausesValidation="False" CommandName="Cancel" Text="CANCEL"></asp:LinkButton>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:LinkButton ID="lnkEditar" runat="server" CausesValidation="False" CommandName="Edit" Text="EDIT"></asp:LinkButton>
+                    </ItemTemplate>
+                    <FooterTemplate>
+                        <asp:LinkButton ID="lnkAdd" runat="server" OnClick="lnkAdd_Click">ADD</asp:LinkButton>
+                    </FooterTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="DELETE" ShowHeader="False">
+                    <ItemTemplate>
+                        <asp:LinkButton ID="lnkBorrar" runat="server"
+                            OnClientClick="return confirm('Are you sure you want to delete this item');"
+                            CausesValidation="False"
+                            CommandName="Delete"
+                            Text="DELETE"></asp:LinkButton>
+                    </ItemTemplate>
+                </asp:TemplateField>
+            </Columns>
+        </asp:GridView>
     </div>
 </asp:Content>

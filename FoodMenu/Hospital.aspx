@@ -1,7 +1,15 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Hospital.aspx.cs" Inherits="FoodMenu.Hospital" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:GridView ID="gvDoctores" runat="server" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ShowFooter="True" AutoGenerateColumns="False" DataKeyNames="Id_Doctor,Id_Sexo_Doctor,Id_Intervencion_Doctor,Id_Turno_Doctor" OnRowCancelingEdit="gvDoctores_RowCancelingEdit" OnRowDeleting="gvDoctores_RowDeleting" OnRowEditing="gvDoctores_RowEditing" OnRowUpdating="gvDoctores_RowUpdating" AllowPaging="True" AllowSorting="True" OnPageIndexChanging="gvDoctores_PageIndexChanging" PageSize="5" OnSorting="gvDoctores_Sorting">
+    <asp:GridView ID="gvDoctores" runat="server" BackColor="White" 
+        BorderColor="#3366CC" BorderStyle="None" 
+        BorderWidth="1px" CellPadding="4" ShowFooter="True" 
+        AutoGenerateColumns="False" 
+        DataKeyNames="Id_Doctor,Id_Sexo_Doctor,Id_Intervencion_Doctor,Id_Turno_Doctor" 
+        OnRowCancelingEdit="gvDoctores_RowCancelingEdit" OnRowDeleting="gvDoctores_RowDeleting" 
+        OnRowEditing="gvDoctores_RowEditing" OnRowUpdating="gvDoctores_RowUpdating" 
+        AllowPaging="True" AllowSorting="True" OnPageIndexChanging="gvDoctores_PageIndexChanging" 
+        PageSize="5" OnSorting="gvDoctores_Sorting">
         <Columns>
             <asp:TemplateField HeaderText="[Nombre]">
                 <EditItemTemplate>
@@ -111,7 +119,7 @@
             <asp:TemplateField HeaderText="[Editar]" ShowHeader="False">
                 <EditItemTemplate>
                     <asp:LinkButton ID="lnkActualizar" runat="server" CausesValidation="True" CommandName="Update" Text="Actualizar"></asp:LinkButton>
-                    &nbsp;<asp:LinkButton ID="lnkCancelar" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel"></asp:LinkButton>
+                    &nbsp;<asp:LinkButton ID="lnkCancelar" runat="server" CausesValidation="False" CommandName="Cancel" Text="CANCEL"></asp:LinkButton>
                 </EditItemTemplate>
                 <ItemTemplate>
                     <asp:LinkButton ID="lnkEditar" runat="server" CausesValidation="False" CommandName="Edit" Text="Editar"></asp:LinkButton>

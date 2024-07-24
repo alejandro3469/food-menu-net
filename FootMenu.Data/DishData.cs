@@ -6,7 +6,6 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.UI;
 
 namespace FootMenu.Data
 {
@@ -106,7 +105,7 @@ namespace FootMenu.Data
         public void UpdateDish(int dishID, string dishNme, string dishDescription, int dishPrice, bool dishAvailability, int dishCatCategoryId, DateTime dishCreatedAt, string dishImage)
         {
             try
-            {
+            {           
                 var connection = new SqlConnection(ConnectionString);
                 var command = new SqlCommand("spUpdateDish", connection);
                 command.CommandType = CommandType.StoredProcedure;
@@ -123,6 +122,25 @@ namespace FootMenu.Data
                 command.ExecuteNonQuery();
                 connection.Close();
                 var script = $"alert('The dish {dishNme} was added successfully')";
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"Error to add dish, id: : {ex.Message}");
+            }
+        }
+        public void DeleteDish(int dishID)
+        {
+            try
+            {
+                var connection = new SqlConnection(ConnectionString);
+                var command = new SqlCommand("spDeleteDish", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter() { ParameterName = "dish_ID", DbType = DbType.String, Value = dishID });
+
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+                var script = $"alert('The dish {dishID} was DELETED successfully')";
             }
             catch (Exception ex)
             {

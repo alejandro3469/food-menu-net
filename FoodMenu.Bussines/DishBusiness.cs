@@ -141,6 +141,22 @@ namespace FoodMenu.Bussines
                 throw new ApplicationException($"Error to update dish: {ex.Message}");
             }
         }
+        public void DeleteDish(int dishID)
+        {
+            try
+            {
+                var datObject = new DishData();
+                datObject.DeleteDish(dishID);
+            }
+            catch (ApplicationException ex)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"Error to update dish: {ex.Message}");
+            }
+        }
 
         public String GetCategory(int categoryId)
         {
